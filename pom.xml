@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.colorcc.project</groupId>
+	<artifactId>user-register</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+		<!--
+			<module>../user-register-service</module>
+		-->
+		<module>../user-register-webcomponent</module>
+		<module>../user-register-web</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.colorcc</groupId>
+			<artifactId>logger-slf4j-deps</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+			<type>pom</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<source>${maven.compiler.plugin.source}</source>
+					<target>${maven.compiler.plugin.target}</target>
+					<encoding>${maven.jvm.encoding}</encoding>
+					<meminitial>${jvm.minMem}</meminitial>
+					<maxmem>${jvm.maxMem}</maxmem>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+					<excludes>
+						<exclude>**/Abstract*.java</exclude>
+					</excludes>
+					<junitArtifactName>junit:junit</junitArtifactName>
+					<argLine>${maven.surefire.argLine}</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<properties>
+		<maven.compiler.plugin.version>2.4</maven.compiler.plugin.version>
+		<maven.compiler.plugin.source>1.6</maven.compiler.plugin.source>
+		<maven.compiler.plugin.target>1.6</maven.compiler.plugin.target>
+
+		<maven.jvm.encoding>UTF-8</maven.jvm.encoding>
+
+		<!-- JVM memory size -->
+		<jvm.minMem>128m</jvm.minMem>
+		<jvm.maxMem>-Xmx768m</jvm.maxMem>
+
+		<maven.surefire.argLine>-Xmx768m</maven.surefire.argLine>
+		<org.springframework.version>3.2.0.M1</org.springframework.version>
+		<!-- <org.springframework.version>3.1.1.RELEASE</org.springframework.version> -->
+	</properties>
+	<repositories>
+		<repository>
+			<id>spring-milestone</id>
+			<name>Spring Maven MILESTONE Repository</name>
+			<url>http://maven.springframework.org/milestone</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.maven.snapshot</id>
+			<url>http://repo.springsource.org/snapshot/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.maven.release</id>
+			<url>http://repo.springsource.org/release/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+</project>
